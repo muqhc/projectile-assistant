@@ -7,6 +7,8 @@ the projectile assistant mod in fabric
 - arrow (from full charged bow)
 - snowball
 
+video: https://www.youtube.com/watch?v=x-5WoowVOb8
+
 ---
 
 ## Require
