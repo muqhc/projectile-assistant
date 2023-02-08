@@ -96,25 +96,23 @@ class ProjectileAssistantMod : ModInitializer {
         frontText: String = "'", backText: String = ".",
         frontColor: Int = 0xFFDDDD, backColor: Int = 0xDDDDFF,
     ) {
-        val renderer = this
-
         val centerX = client.window.scaledWidth/2
         val centerY = client.window.scaledHeight/2
 
         val selfDir = client.player!!.rotationVecClient.toVector3f().normalize(Vector3f(0f,0f,0f))
         val dirToTarget = entity.eyePos.toVector3f().sub(client.player!!.pos.toVector3f(), Vector3f(0f, 0f, 0f)).normalize()
         val horizon = Vector2f(selfDir.x,selfDir.z).angle(Vector2f(dirToTarget.x,dirToTarget.z))
-        if (abs(horizon) < (PI/2)) renderer.draw(
+        if (abs(horizon) < (PI/2)) draw(
             matrixStack, frontText,
-            (atan(horizon)*(centerX/(PI/2))-(renderer.getWidth(".")/2)+centerX).toFloat(),
+            (atan(horizon)*(centerX/(PI/2))-(getWidth(backText)/2)+centerX).toFloat(),
             (centerY*(13.0/8.0)).toFloat(),
             frontColor
         )
-        else renderer.draw(
+        else draw(
             matrixStack, backText,
             (atan(
                 (PI/2) - (abs(horizon) - (PI/2))
-            )*sign(horizon)*(centerX/(PI/2))-(renderer.getWidth("'")/2)+centerX).toFloat(),
+            )*sign(horizon)*(centerX/(PI/2))-(getWidth(frontText)/2)+centerX).toFloat(),
             (centerY*(13.0/8.0)).toFloat(),
             backColor
         )
